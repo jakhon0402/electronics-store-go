@@ -36,12 +36,21 @@ func (h *Handler) CreateProduct(c *gin.Context) {
 		if result.Error != nil {
 			return handler.NewErrorResponse(http.StatusConflict, handler.InvalidQueryValue, "invalid create product", result)
 		}
-		return handler.NewSuccessResponse(http.StatusOK, result)
+		log.Info("Product created!")
+		return handler.NewSuccessResponse(http.StatusOK, gin.H{
+			"message": "product created!",
+			"product": newProduct,
+		})
 	})
 }
 
 func RouteV1(h *Handler, r *gin.Engine) {
-	r.Group("/api/product")
+	v1 := r.Group("/api/product")
+
+	v1.Use()
+	{
+		v1.POST("/", h.CreateProduct)
+	}
 }
 
 func NewProductHandler(db *gorm.DB) *Handler {
