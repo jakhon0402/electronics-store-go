@@ -63,34 +63,3 @@ func main() {
 	//newProduct := models.Product{Name: "Mahsulot Nomi", Title: "Mahsulot Sarlavhasi", Price: 13.0, Specification: "Tavsifi"}
 
 }
-
-type Service struct {
-}
-
-//type Person struct {
-//	IPerson
-//	Name string
-//	Age  uint8
-//}
-//
-//func (p *Person) AgePlus() {
-//	p.Age++
-//}
-//
-//func (p *Person) Walk() {
-//
-//}
-//
-//type AnotherPerson struct {
-//	Person
-//}
-//
-//func (ap *AnotherPerson) AgePlus() {
-//	ap.Age++
-//}
-//
-//type IPerson interface {
-//	Walk()
-//	Speak()
-//	Talk()
-//}
