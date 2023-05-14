@@ -1,0 +1,11 @@
+server:
+  port: 8080
+
+db:
+  dataSourceName: host=localhost user=postgres password=pinkstars dbname=golang port=5432 sslmode=disable
+  migrate:
+    enable: true
+  pool:
+    maxOpen: 10
+    maxIdle: 5
+    maxLifetime: "5m"
