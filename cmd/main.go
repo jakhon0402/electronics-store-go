@@ -2,9 +2,7 @@ package main
 
 import (
 	"context"
-	"electronics-store-go/internal/app/controller"
 	"electronics-store-go/internal/config"
-	"electronics-store-go/internal/database"
 	"electronics-store-go/pkg/logger"
 	"github.com/gin-gonic/gin"
 	"net/http"
@@ -21,12 +19,20 @@ func main() {
 	if err != nil {
 		log.Error("Error with load config files!")
 	}
-	db, err := database.NewDatabase(&cnf)
-	if err != nil {
-		log.Error("Error with connect Database!")
-	}
+	log.Info(cnf.Server.Port)
 
-	controller.RouteV1(&controller.Handler{Db: db}, router)
+	productV1 := router.Group("/api/product")
+	productV1.GET("/", func(c *gin.Context) {
+		c.JSON(http.StatusOK, gin.H{
+			"msg": "Vecelga deploy buldi",
+		})
+	})
+	//db, err := database.NewDatabase(&cnf)
+	//if err != nil {
+	//	log.Error("Error with connect Database!")
+	//}
+	//
+	//controller.RouteV1(controller.NewProductHandler(db), router)
 
 	server := http.Server{
 		Addr:    ":8080",
